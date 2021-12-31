@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Alquileres.GUI.Models.ExistingOwnerVM
+@{
+
+    if (@Model.Data != null)
+    {
+        if (@Model.Data.Count() > 0)
+        {
+            @foreach (var x in Model.Data)
+            {
+
+                <div class="row justify-content-md-center border">
+                    <div class="col-12">
+                        <br />
+                    </div>
+                    <div class="col-6">
+                        <p>Owner Name: @x.Name</p>
+
+                        <img src=" @x.Photo" class="rounded mx-auto d-block" alt="..." style="height:300px;max-width:800px;width: expression(this.width > 500 ? 500: true);">
+
+                        <h6>Birthday: <span class="badge badge-secondary">@x.BirthDay</span></h6>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No existing any owner</p>
+        }
+    }
+    else
+    {
+        <p>No existing any owner</p>
+    }
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#tableOwners').DataTable();
+                if ('@Html.Raw(@Model.Response)' != '' && '@Html.Raw(@Model.Response)' != null && '@Html.Raw(@Model.Response)' != undefined) {
+                    swal({
+                      title: "Info",
+                      text: "@Html.Raw(Model.Response)",
+                      icon: "info",
+                    });
+                }
+        } );
+    </script>
+}
+
