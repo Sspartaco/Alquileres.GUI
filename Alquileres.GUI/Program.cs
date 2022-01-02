@@ -25,6 +25,14 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/Owners"
 });
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "LocalFiles")),
+    RequestPath = "/LocalFiles"
+});
+
+
 app.UseRouting();
 
 app.UseAuthorization();

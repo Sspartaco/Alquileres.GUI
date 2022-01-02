@@ -1,47 +1,48 @@
-﻿@*
-*@
+﻿@{
+    ViewData["Title"] = "Add Owner";
+}
 @model Alquileres.GUI.Models.OwnerVM
 @{
     <div class="form-body">
-        <div class="row">
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <form method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" name="OwnerName" placeholder="Enter owner name..." required>
-                            </div>
-                            <div class="form-group">
-                                <label>Adress</label>
-                                <input type="text" class="form-control" name="OwnerAdress" placeholder="Enter owner adress..." required>
-                            </div>
-                            <div class="form-group">
-                                <label>Photo</label>
-                                <input type="file" class="form-control" name="OwnerPhoto" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Birthday</label>
-                                <input type="datetime-local" class="form-control" name="OwnerBirthday" required>
-                            </div>
-                            <br />
-                            <button type="submit" class="btn btn-primary" asp-action="AddOwner">Submit</button>
-                        </form>
+            <div class="row">
+                <div class="form-holder" style="border-color:white;borde">
+                    <div class="form-content">
+                        <div class="form-items">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" name="OwnerName" placeholder="Enter owner name..." required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Adress</label>
+                                    <input type="text" class="form-control" name="OwnerAdress" placeholder="Enter owner adress..." required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Photo</label>
+                                    <input type="file" class="form-control" name="OwnerPhoto" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Birthday</label>
+                                    <input type="datetime-local" class="form-control" name="OwnerBirthday" required>
+                                </div>
+                                <br />
+                                <button type="submit" class="btn btn-secondary btn-lg" asp-action="AddOwner">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <br />
     <script type="text/javascript">
-        $(document).ready(function () {
-            if ('@Html.Raw(@Model.Response)' != '' && '@Html.Raw(@Model.Response)' != null && '@Html.Raw(@Model.Response)' != undefined) {
-                swal({
-                  title: "Info",
-                  text: "@Html.Raw(Model.Response)",
-                  icon: "info",
-                });
-            }
-        });
+            $(document).ready(function () {
+                if ('@Html.Raw(@Model.Response)' != '' && '@Html.Raw(@Model.Response)' != null && '@Html.Raw(@Model.Response)' != undefined) {
+                    swal({
+                      title: "Info",
+                      text: "@Html.Raw(Model.Response)",
+                      icon: "info",
+                    });
+                }
+            });
     </script>
 }

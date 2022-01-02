@@ -1,6 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+    ViewData["Title"] = "Existing Owner";
+}
 @model Alquileres.GUI.Models.ExistingOwnerVM
 @{
 
@@ -11,16 +11,20 @@
             @foreach (var x in Model.Data)
             {
 
-                <div class="row justify-content-md-center border">
+                <div class="row justify-content-md-center container-picks" style="">
                     <div class="col-12">
                         <br />
                     </div>
                     <div class="col-6">
                         <p>Owner Name: @x.Name</p>
-
                         <img src=" @x.Photo" class="rounded mx-auto d-block" alt="..." style="height:300px;max-width:800px;width: expression(this.width > 500 ? 500: true);">
-
                         <h6>Birthday: <span class="badge badge-secondary">@x.BirthDay</span></h6>
+                    </div>
+
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-12">
+                        <br />
                     </div>
                 </div>
             }
