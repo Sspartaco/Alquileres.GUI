@@ -53,13 +53,14 @@ namespace Alquileres.Acces.Utilities
         /// <summary>
         /// Metodo para deserializar la respuesta de un json
         /// </summary>
-        /// <param name="jsonBody"></param>
+        /// <param name="jsonBody">Cuerpo del json a deserializar</param>
+        /// <param name="Entity">Tipo de entidad a la cual se desea desearilizar</param>
         /// <returns>Retorna un objeto el cual despues puede ser convertido en cualquier tipo que se desee manejar</returns>
-        public object? DeserializeObjectJson(string jsonBody, Type entitie)
+        public object? DeserializeObjectJson(string jsonBody, Type Entity)
         {
             try
             {
-                var response = JsonConvert.DeserializeObject(jsonBody, entitie);
+                var response = JsonConvert.DeserializeObject(jsonBody, Entity);
                 return response;
             }
             catch

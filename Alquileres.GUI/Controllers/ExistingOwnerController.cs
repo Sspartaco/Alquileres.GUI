@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Alquileres.GUI.Controllers
 {
-    public class ExistingOwner : Controller
+    public class ExistingOwnerController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IWebHostEnvironment _environment;
-        public ExistingOwner(ILogger<HomeController> logger, IWebHostEnvironment environment)
+        private readonly IConfiguration _configuration;
+
+        public ExistingOwnerController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            _environment = environment;
+            _configuration = configuration;
         }
+
         public IActionResult Index()
         {
             try
@@ -22,7 +24,7 @@ namespace Alquileres.GUI.Controllers
 
 
                 Utilities utilities = new Utilities();
-                var response = utilities.GetResponseHttp("https://localhost:44361/api/Owner/GetOwners");
+                var response = utilities.GetResponseHttp(_configuration.GetSection("ApiUrls:Owners:GetOwners").Value);
                 while (!response.IsCompleted) { };
                 if (response.Status == TaskStatus.Faulted)
                     throw new Exception(response.Exception.Message);
@@ -35,7 +37,7 @@ namespace Alquileres.GUI.Controllers
 
                 existingOwnerVM.Data = data;
 
-                return View("Index", existingOwnerVM);
+                return View("~/Views/Owner/ExistingOwner.cshtml", existingOwnerVM);
             }
             catch (Exception ex)
             {
@@ -45,7 +47,7 @@ namespace Alquileres.GUI.Controllers
                 ownerVM.Response = "An error has ocurred please try later.";
                 ownerVM.Data = null;
 
-                return View("Index", ownerVM);
+                return View("~/Views/Owner/ExistingOwner.cshtml", ownerVM);
             }
         }
     }

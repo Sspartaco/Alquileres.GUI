@@ -1,5 +1,64 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model Alquileres.GUI.Models.PropertyVM
 @{
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <form method="post">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="PropertyName" placeholder="Enter property name..." required>
+                            </div>
+                            <div class="form-group">
+                                <label>Adress</label>
+                                <input type="text" class="form-control" name="PropertyAdress" placeholder="Enter adress..." required>
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="number" class="form-control" name="PropertyPrice" placeholder="Enter property price" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Code Internal</label>
+                                <input type="text" class="form-control" name="CodeInternal" placeholder="Code internal" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="number" class="form-control" name="PropertyYear" placeholder="Enter property year" required>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" name="PropertyOwner">
+                                    <option selected>Select Owner</option>
+                                    if(@Model.Owners!=null)
+                                    {
+                                        @foreach (var x in Model.Owners)
+                                        {
+                                            <option value="@x.IdOwner">@x.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary" asp-action="AddProperty">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ("@Html.Raw(@Model.Response)" != '' && "@Html.Raw(@Model.Response)" != null && "@Html.Raw(@Model.Response)" != undefined) {
+                swal({
+                  title: "Info",
+                  text: "@Html.Raw(Model.Response)",
+                  icon: "info",
+                });
+            }
+        });
+    </script>
 }
