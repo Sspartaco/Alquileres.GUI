@@ -32,6 +32,12 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/LocalFiles"
 });
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "PropertyFiles")),
+    RequestPath = "/PropertyFiles"
+});
 
 app.UseRouting();
 

@@ -1,5 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+    ViewData["Title"] = "Add Property";
+}
+@model Alquileres.GUI.Models.FullPropertyVM
 @{
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <form method="post">
+                            <div class="form-group">
+                                <label>Date sale</label>
+                                <input type="date" class="form-control" name="DateSale" required value="@Model.PropertyTrace.DateSale">
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="NameTrace" placeholder="Enter name" required value="@Model.PropertyTrace.Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input type="number" class="form-control" name="ValueTrace" placeholder="Enter Value Trace" required value="@Model.PropertyTrace.Value">
+                            </div>
+                            <div class="form-group">
+                                <label>Tax</label>
+                                <input type="text" class="form-control" name="TaxTrace" placeholder="TaxTrace" required value="@Model.PropertyTrace.Tax">
+                            </div>
+                            <div class="form-group">
+                                @if (Model.PropertyImage != null)
+                                {
+                                    @if (Model.PropertyImage.Enable)
+                                    {
+                                        if (Model.PropertyImage.File != null)
+                                        {
+                                            <p>Property Image</p>
+                                            <br />
+                                            <img src="Model.PropertyImage.File" class="rounded mx-auto d-block" alt="..." style="height:250px;max-width:250px;">
+                                        }
+                                        else
+                                        {
+                                            <p>No property file image</p>
+                                            <br />
+                                            <input type="file" class="form-control" name="PropertyImage" required>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>No property file image</p>
+                                        <br />
+                                        <input type="file" class="form-control" name="PropertyImage" required>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>No property file image</p>
+                                    <br />
+                                    <input type="file" class="form-control" name="PropertyImage" required>
+                                }
+                                <br />
+                            </div>
+                            <button type="submit" class="btn btn-primary" asp-action="AddProperty">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ("@Html.Raw(@Model.Response)" != '' && "@Html.Raw(@Model.Response)" != null && "@Html.Raw(@Model.Response)" != undefined) {
+                swal({
+                  title: "Info",
+                  text: "@Html.Raw(Model.Response)",
+                  icon: "info",
+                });
+            }
+        });
+    </script>
 }
