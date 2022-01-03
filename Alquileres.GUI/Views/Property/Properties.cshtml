@@ -8,10 +8,12 @@
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Date sale</label>
-                                <input type="date" class="form-control" name="DateSale" required value="@Model.PropertyTrace.DateSale">
+                                <input type="hidden" class="form-control" name="HiddenIdProperty" value="@Model.Property.IdProperty">
+                                <input type="hidden" class="form-control" name="HiddenIdPropertyTrace" value="@Model.PropertyTrace.IdPropertyTrace">
+                                <input type="datetime" class="form-control" name="DateSale" required value="@Model.PropertyTrace.DateSale">
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
@@ -19,22 +21,26 @@
                             </div>
                             <div class="form-group">
                                 <label>Value</label>
-                                <input type="number" class="form-control" name="ValueTrace" placeholder="Enter Value Trace" required value="@Model.PropertyTrace.Value">
+                                <input type="number" class="form-control" name="ValueTrace" placeholder="Enter Value Trace" step="0.01" required value="@Model.PropertyTrace.Value.ToString().Replace(",",".")">
                             </div>
                             <div class="form-group">
                                 <label>Tax</label>
-                                <input type="text" class="form-control" name="TaxTrace" placeholder="TaxTrace" required value="@Model.PropertyTrace.Tax">
+                                <input type="number" class="form-control" name="TaxTrace" placeholder="TaxTrace" required step="0.01" value="@Model.PropertyTrace.Tax.ToString().Replace(",",".")">
                             </div>
                             <div class="form-group">
                                 @if (Model.PropertyImage != null)
                                 {
+                                    <input type="hidden" class="form-control" name="HiddenIdPropertyImage" value="@Model.PropertyImage.IdPropertyImage">
+                                    <input type="hidden" class="form-control" name="HiddenPropertyImageName" value="@Model.PropertyImage.File.ToString().Replace("/PropertyFiles/","")">
                                     @if (Model.PropertyImage.Enable)
                                     {
                                         if (Model.PropertyImage.File != null)
                                         {
+                                            <input type="file" class="form-control" name="PropertyImage">
+                                            <br />
                                             <p>Property Image</p>
                                             <br />
-                                            <img src="Model.PropertyImage.File" class="rounded mx-auto d-block" alt="..." style="height:250px;max-width:250px;">
+                                            <img src="@Model.PropertyImage.File" class="rounded mx-auto d-block" alt="..." style="height:250px;max-width:250px;">
                                         }
                                         else
                                         {
@@ -58,7 +64,7 @@
                                 }
                                 <br />
                             </div>
-                            <button type="submit" class="btn btn-primary" asp-action="AddProperty">Submit</button>
+                            <button type="submit" class="btn btn-secondary btn-lg" asp-action="AddFullProperty">Submit</button>
                         </form>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ namespace Alquileres.GUI.Models
         public PropertyTraceEntity PropertyTrace
         { get; set; }
 
-        public PropertyEntity PropertyEntity
+        public PropertyEntity Property
         { get; set; }
 
         public string Response { get; set; }
