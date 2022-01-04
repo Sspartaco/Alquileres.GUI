@@ -31,7 +31,15 @@
                                 @if (Model.PropertyImage != null)
                                 {
                                     <input type="hidden" class="form-control" name="HiddenIdPropertyImage" value="@Model.PropertyImage.IdPropertyImage">
-                                    <input type="hidden" class="form-control" name="HiddenPropertyImageName" value="@Model.PropertyImage.File.ToString().Replace("/PropertyFiles/","")">
+                                    @if (@Model.PropertyImage.File != null)
+                                    {
+                                        <input type="hidden" class="form-control" name="HiddenPropertyImageName" value="@Model.PropertyImage.File.ToString().Replace("/Property/","")">
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" class="form-control" name="HiddenPropertyImageName" value="@Model.PropertyImage.File">
+                                    }
+
                                     @if (Model.PropertyImage.Enable)
                                     {
                                         if (Model.PropertyImage.File != null)

@@ -29,7 +29,7 @@ namespace Alquileres.GUI.Controllers
                 var data = utilities.DeserializeObjectJson(response, typeof(FullPropertyVM)) as FullPropertyVM;
 
                 if (data.PropertyImage.File != null)
-                    data.PropertyImage.File = string.Concat(@"/PropertyFiles/", data.PropertyImage.File);
+                    data.PropertyImage.File = string.Concat(@"/Property/", data.PropertyImage.File);
                 fullPropertyVM.PropertyTrace = data.PropertyTrace;
                 fullPropertyVM.Property = data.Property;
                 fullPropertyVM.PropertyImage = data.PropertyImage;
@@ -76,7 +76,7 @@ namespace Alquileres.GUI.Controllers
                 if (this.HttpContext.Request.Form.Files.Count > 0)
                 {
                     fileName = string.Concat(Guid.NewGuid().ToString(), Path.GetExtension(this.HttpContext.Request.Form.Files[0].FileName));
-                    utilities.SaveFile(this.HttpContext, string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "PropertyFiles", "\\", fileName));
+                    utilities.SaveFile(this.HttpContext, string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Property", "\\", fileName));
                 }
 
                 string json = string.Format("{{\"property\":{{\"idProperty\":\"{0}\"," +
@@ -120,7 +120,7 @@ namespace Alquileres.GUI.Controllers
                 var responseFullProperty = await utilities.GetResponseHttp(string.Concat(_configuration.GetSection("ApiUrls:Property:GetFullProperty").Value, "?idProperty=", data.IdProperty));
                 var dataFullProperty = utilities.DeserializeObjectJson(responseFullProperty, typeof(FullPropertyVM)) as FullPropertyVM;
 
-                dataFullProperty.PropertyImage.File = string.Concat(@"/PropertyFiles/", dataFullProperty.PropertyImage.File);
+                dataFullProperty.PropertyImage.File = string.Concat(@"/Property/", dataFullProperty.PropertyImage.File);
                 fullPropertyVM.PropertyTrace = dataFullProperty.PropertyTrace;
                 fullPropertyVM.Property = dataFullProperty.Property;
                 fullPropertyVM.PropertyImage = dataFullProperty.PropertyImage;

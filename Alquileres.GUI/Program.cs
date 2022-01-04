@@ -21,8 +21,8 @@ app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "Owners")),
-    RequestPath = "/Owners"
+        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "Owner")),
+    RequestPath = "/Owner"
 });
 
 app.UseStaticFiles(new StaticFileOptions
@@ -35,8 +35,8 @@ app.UseStaticFiles(new StaticFileOptions
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "PropertyFiles")),
-    RequestPath = "/PropertyFiles"
+        String.Concat(Environment.CurrentDirectory, "\\", "Files", "\\", "Property")),
+    RequestPath = "/Property"
 });
 
 app.UseRouting();

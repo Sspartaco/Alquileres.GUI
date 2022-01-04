@@ -32,7 +32,7 @@ namespace Alquileres.GUI.Controllers
                 var data = utilities.DeserializeObjectJson(response.Result, typeof(OwnerEntity[])) as OwnerEntity[];
                 foreach (var x in data)
                 {
-                    x.Photo = string.Concat(@"/Owners/", x.Photo);
+                    x.Photo = string.Concat(@"/Owner/", x.Photo);
                 }
 
                 existingOwnerVM.Data = data;

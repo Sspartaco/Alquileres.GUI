@@ -33,7 +33,7 @@ namespace Alquileres.GUI.Controllers
             try
             {
                 Utilities utilities = new Utilities();
-                utilities.SaveFile(this.HttpContext, string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owners", "\\", fileName));
+                utilities.SaveFile(this.HttpContext, string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owner", "\\", fileName));
 
                 string json = string.Format("   {{\"name\":\"{0}\"," +
                                 "\"address\":\"{1}\"" +
@@ -54,8 +54,8 @@ namespace Alquileres.GUI.Controllers
             }
             catch (Exception ex)
             {
-                if (System.IO.File.Exists(string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owners", "\\", fileName)))
-                    System.IO.File.Delete(string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owners", "\\", fileName));
+                if (System.IO.File.Exists(string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owner", "\\", fileName)))
+                    System.IO.File.Delete(string.Concat(_environment.ContentRootPath, "\\", "Files", "\\", "Owner", "\\", fileName));
                 _logger.LogError(ex.Message);
 
                 OwnerVM ownerVM = new OwnerVM();
