@@ -18,6 +18,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+/// <summary>
+/// Uso de carpeta para propietarios
+/// </summary>
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -25,6 +28,9 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/Owner"
 });
 
+/// <summary>
+/// Uso de carpeta para archivos locales
+/// </summary>
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -32,6 +38,9 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/LocalFiles"
 });
 
+/// <summary>
+/// Uso de carpeta para propiedades
+/// </summary>
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
